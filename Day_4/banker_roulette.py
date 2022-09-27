@@ -13,3 +13,6 @@ names = names_string.split(", ")
 pay_person = random.randint(0, len(names)-1)
 print(names[pay_person]+ ' is going to buy the meal today!')
 
+print(random.choice(names))
+
+
