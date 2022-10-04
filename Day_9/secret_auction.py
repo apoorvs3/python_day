@@ -1,4 +1,3 @@
-from replit import clear
 from art import logo
 import os
 
@@ -15,7 +14,7 @@ while other_player:
     if other_bidders == 'no':
         other_player = False
     else:
-        clear()
+        os.system('clear')
 
 
 max_ = 0
