@@ -4,6 +4,8 @@ welcome to the black jack by joker
 import random
 
 cards_on_deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+added_in_func = 0
+temp = 0
 
 
 def generate_new_card(cards_in_deck):
@@ -12,6 +14,7 @@ def generate_new_card(cards_in_deck):
 
 
 def show_card(computer_total, player_total):
+    global temp, added_in_func
     if check_bust(player_total):
         return 'lost'
     elif player_total == 21:
@@ -20,8 +23,10 @@ def show_card(computer_total, player_total):
         else:
             return 'won'
     else:  # Player total is less than 21
+        temp = computer_total
         while computer_total < 17:
-            computer_total += generate_new_card(cards_on_deck)
+            computer_total +=  generate_new_card(cards_on_deck)
+        added_in_func = computer_total - temp
         if check_bust(computer_total):
             return 'won'
         elif check_draw(computer_total, player_total):
@@ -80,4 +85,5 @@ if show_cards == 'show':
     show the hand of computer
     """
     result = show_card(computer_tot, player_tot)
+    computer_tot += added_in_func
     print(f'The game is {result} \nYour total: {player_tot}\nComputer total: {computer_tot}')
