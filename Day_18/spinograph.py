@@ -16,9 +16,13 @@ def random_color():
     return color
 
 
-for _ in range(2):
-    ra.color(random_color())
-    ra.circle(100)
+def draw_spinograph(size_of_gap):
+    for _ in range(int(360/size_of_gap)):
+        ra.color(random_color())
+        ra.circle(100)
+        ra.setheading(ra.heading() + size_of_gap)
 
+
+draw_spinograph(5)
 ra.hideturtle()
 screen.exitonclick()
