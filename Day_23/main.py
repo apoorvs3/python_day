@@ -9,6 +9,7 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.tracer(0)
 player = Player()
+score = Scoreboard()
 car_manager = CarManager()
 
 # gameplay keys
@@ -28,5 +29,10 @@ while game_is_on:
             game_is_on = False
 
     screen.update()
+
+    # Detect when player reaches the upper end
+    if player.finish_line():
+        pass
+
 
 screen.exitonclick()

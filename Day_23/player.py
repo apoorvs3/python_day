@@ -17,3 +17,8 @@ class Player(Turtle):
 
     def up(self):
         self.forward(MOVE_DISTANCE)
+
+    def finish_line(self):
+        if self.ycor() > 280:
+            self.goto(STARTING_POSITION)
+            return True
