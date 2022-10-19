@@ -1,0 +1,7 @@
+1. start a turtle car -can only go north direction from south end of screen to north end
+1.1 level and score is increased when reached screen end.
+2. create random cars if size 2x turtle with different colors
+3. cars move only from right to left of screen with some speed
+4. level increased will increase speed of cars
+5. turtle colliding with car is Game Over!
+
