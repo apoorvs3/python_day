@@ -11,5 +11,9 @@
 #     contents = file.write('\nnew text')
 
 
-with open('new_fil.txt', mode='w') as file:   # doesn't require to manually close file
-    contents = file.write('new text')
+with open('./snake_mod/my_fil.txt', mode='w') as file:   # doesn't require to manually close file
+    contents = file.write('new text from cliff folder')
+
+"""
+../ go to parent folder
+"""
