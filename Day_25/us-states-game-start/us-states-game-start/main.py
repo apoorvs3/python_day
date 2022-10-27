@@ -33,13 +33,26 @@ def answer_matcher(answer):
 game_is_on = True
 answers = []
 while game_is_on:
-    answer_state = screen.textinput(title=f'{score}/50 states correct', prompt='What\'s is another states name?')
-    print(answer_state.title())
+    answer_state = screen.textinput(title=f'{score}/50 states correct', prompt='What\'s is another states name?').title()
+    print(answer_state)
+    if answer_state == 'Exit':
+        break
     if answer_state.title() in answers:
         continue
-    answers.append(answer_state.title())
-    check(answer_state.title())
+    answers.append(answer_state)
+    check(answer_state)
     if score>50:
         game_is_on = False
 
 screen.exitonclick()
+
+not_guessed = []
+# create file when not completed
+for state in data['state'].tolist():
+    if state not in answers:
+        not_guessed.append(state)
+
+
+df = pd.Series(not_guessed)
+df.to_csv('Learn this before next quiz')
+
