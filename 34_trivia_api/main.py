@@ -12,7 +12,7 @@ for question in question_data:
 
 
 quiz = QuizBrain(question_bank)
-quiz_ui = QuizInterface()
+quiz_ui = QuizInterface(quiz)
 
 # while quiz.still_has_questions():         since tk inter while loop is handling this.
 #     quiz.next_question()
