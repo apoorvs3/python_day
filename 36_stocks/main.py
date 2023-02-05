@@ -62,7 +62,6 @@ def send_message(news):
     keys = [key for key in news]
     for key in keys:
         msg += f'Headline: {key} \n Brief: {news[key]} \n'
-    print(msg)
 
     message = client.messages \
         .create(
@@ -70,6 +69,7 @@ def send_message(news):
         from_='+16507191660',
         to='+918840981096'
     )
+    print(message.status)
 
 
 if __name__ == '__main__':
