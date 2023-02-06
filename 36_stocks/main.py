@@ -5,7 +5,7 @@ from twilio.rest import Client
 STOCK_NAME = "IBM"
 COMPANY_NAME = "IBM"
 account_sid = 'ACfe31166cf23c89f3cc55d6af4d24ee63'
-auth_token = '2f769db6d43ef22df3573a354e24fdb0'
+auth_token = '64eeaa31b27ee9e3439e2796470afd38'
 client = Client(account_sid, auth_token)
 
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
