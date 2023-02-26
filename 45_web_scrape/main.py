@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-# import lxml
+# imp ort lxml
 
 with open('website.html') as file:
     contents = file.read()
@@ -24,5 +24,13 @@ for anchors in anchor_tags:
     pass
 
 headings = soup.find(name='h1', id='name')
-print(headings)
-section_heading = soup.find(name='h3')
+# print(headings)
+# section_heading = soup.find(name='h3', class_="heading")
+# print(section_heading.getText())
+# print(section_heading.name)
+# print(section_heading.get("class"))
+company_url = soup.select_one(selector="p a")
+print(company_url)
+print(soup.select_one(selector="#name"))
+
+print(soup.select(selector=".heading"))
