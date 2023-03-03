@@ -1,6 +1,9 @@
+import logging
+
 import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import logging
 
 
 class Scraper:
@@ -18,4 +21,5 @@ class Scraper:
             children = lis.findAll("h3")
             for child in children:
                 songs.append(child)
-                print(child.text.strip())
+            logging.info(f'Got {len(songs)} from the playlist')
+        return songs
