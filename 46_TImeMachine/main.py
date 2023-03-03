@@ -16,9 +16,9 @@ def authenticate():
     return sp
 
 
-def get_playlist(playlist_name: str):
+def get_playlist(playlist_name: str, dob_: str):
     for idx, item in enumerate(auth.current_user_playlists()['items']):
-        if auth.current_user_playlists()['items'][idx]['name'] == '1996_06_09 Billboard 100':
+        if auth.current_user_playlists()['items'][idx]['name'] == f'{dob_.replace("-", "_")} Billboard 100':
             return auth.current_user_playlists()['items'][idx]['id']
 
 
@@ -26,22 +26,34 @@ def add_songs(uri_lists: list):
     auth.playlist_add_items(playlist_id=playlist_id, items=uri_lists)
 
 
-def create_uri(song_list: list):
-    year = 1996
-    print(song_list)
-    uris = [auth.search(q=f'track {song} year: {year}', type='track')['tracks']['href'] for song in song_list]
-    print(uris)
+def create_uri(song_list: list, dob_: str):
+    uris = list()
+    year = dob_[:4]
+    logging.info(f"year is {year}")
+    logging.info(f'song list is {len(song_list)}')
+    # for song in song_list:
+    for song in song_list:
+        try:
+            uris.append(auth.search(q=f'track {str(song)} year: {year}', type='track')["tracks"]["items"][0]["uri"])
+        except Exception as e:
+            logging.warning(f'{Exception} found in the flow')
     return uris
+
+
+def create_playlist(dob_: str):
+    auth.user_playlist_create(user=auth.current_user()["id"], name=f'{dob_.replace("-", "_")} Billboard 100')
 
 
 if __name__ == '__main__':
     auth = authenticate()
-    result = auth.search(q='track: {Tha Crossroads} year:{1996}', type='track')
-    uri = result['tracks']['href']
-    playlist_id = get_playlist(playlist_name='1996_06_09 Billboard 100')
+    logging.basicConfig(level=logging.DEBUG)
+    dob = input('What is the your Date of birth : YYYY-MM-DD: ')
+    create_playlist(dob)
+    playlist_id = get_playlist(playlist_name=f'{dob.replace("-", "_")} Billboard 100', dob_=dob)
     # scrap 100 songs
-    scrap = Scraper()
+    scrap = Scraper(dob)
     # create uri list of songs
-    uri_list = create_uri(scrap.get_list())
+    uri_list = create_uri(scrap.get_list(), dob)
     # add song for URI
+    logging.info(f'length is {len(uri_list)}')
     add_songs(uri_list)
